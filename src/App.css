@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar in Firefox */
+html {
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Still allow vertical scrolling but no horizontal scrolling */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden; /* Just in case, apply to body too */
+}
+
+/* outlined slanted big repeated text used in the hero band */
+.projects-slab {
+  position: absolute;
+  top: -3.2rem; /* tweak to taste */
+  left: -10%;
+  right: -10%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+.stroke-text {
+  transform: rotate(-4deg);
+  transform-origin: right center; 
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.15);
+  -webkit-text-stroke: 1px rgba(245, 244, 244, 0.699);
+  opacity: 1;
+  display: inline-block;
+}
+
+.clip-slant-top {
+  clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* responsive reduce of slab text size */
+@media (max-width: 1024px) {
+  .projects-slab .stroke-text { font-size: 5rem; }
+}
+@media (max-width: 640px) {
+  .projects-slab .stroke-text { font-size: 3rem; left: -4%; }
+}
