@@ -203,16 +203,19 @@ const CardSwap = ({
         },
       }) : child
   );
-
-  return (
-    <div
-      ref={container}
-      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
-      style={{ width, height }}
-    >
-      {rendered}
-    </div>
-  );
-};
-
+return (
+  <div
+    ref={container}
+    className="relative flex justify-center items-center 
+               transform  translate-y-[8%] perspective-[900px] 
+               overflow-visible 
+               max-[768px]:scale-[0.75] 
+               max-[480px]:scale-[0.55]
+               "
+    style={{ width, height }}
+  >
+    {rendered}
+  </div>
+);
+}
 export default CardSwap;
