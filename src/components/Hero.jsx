@@ -9,12 +9,11 @@ import hero4 from "../assets/img/hero4.jpg";
 
 export default function Hero() {
   return (
-    <section className="bg-[#FFFFFF] w-full mt-25 mb-5 overflow-hidden ">
-      {/* <div className="max-w-10xl px-4 sm:px-6 lg:px-20 py-12 flex flex-col lg:flex-row gap-6"> */}
-        <div className="max-w-10xl pl-4 sm:pl-6 lg:pl-20 pr-5 py-12 flex flex-col lg:flex-row gap-6">
-
+    // <section className="bg-[#FFFFFF] w-full mt-25 mb-5 overflow-hidden">
+    <section className="bg-[#FFFFFF] w-full mt-25 mb-5 overflow-hidden">
+      <div className="max-w-10xl pl-4 sm:pl-6 lg:pl-20 pr-5 py-12 flex flex-col lg:flex-row gap:10">
         {/* LEFT SIDE (Text + CardSwap + Hero Image) */}
-        <div className="w-full lg:w-2/3 flex flex-col">
+        <div className="w-full lg:w-1/2 flex flex-col">
           {/* TEXT */}
           <div>
             <p className="text-[#478097] text-sm lg:text-lg font-semibold">
@@ -110,18 +109,18 @@ export default function Hero() {
           </div>
 
           {/* HERO IMAGE */}
-          <div className="relative mt-10 sm:mt-[50px] md:mt-[104px] lg:mt-15">
+          <div className="relative xm:mt-0 sm:mt-0 md:mt-0 lg:mt-15">
             <img
               src={hero1}
               alt="Hero"
               className="
                 rounded-[10px] 
                 w-full 
-                max-w-6xl 
+                max-w-7xl 
                 h-auto 
-                sm:h-64    
-                md:h-80   
-                lg:h-100
+                sm:h-60   
+                md:h-60   
+                lg:h-78
                 object-cover
               "
             />
@@ -131,52 +130,52 @@ export default function Hero() {
         {/* RIGHT SIDE (CardSwap for desktop only) */}
         <div className="w-full lg:w-1/3 hidden lg:flex  items-end justify-end ">
           <CardSwap
-            width={650}
-            height={580}
-            cardDistance={60}
-            verticalDistance={70}
-            delay={5000}
+            width={950}
+            height={650}
+            cardDistance={40}
+            verticalDistance={89}
+            delay={3000}
             pauseOnHover={false}
           >
             {/* Card 1 */}
-            <Card className="bg-white shadow-lg p-5 border-4 border-[#CFFFF5]">
-              <h3 className="text-2xl font-bold text-black">Design</h3>
-              <p className="text-[#757575] text-[13px] leading-[28px] mt-2">
+            <Card className="bg-white shadow-lg p-10 border-4 border-[#CFFFF5] border-b-0">
+              <h3 className="text-2xl font-bold text-black mb-3">Design</h3>
+              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium.
               </p>
               <img
                 src={hero2}
                 alt="Hero"
-                className="mt-3 w-full max-w-2xl h-[85%] object-cover"
+                className="mt-3 w-full max-w-4xl h-[87%] object-cover"
               />
             </Card>
 
             {/* Card 2 */}
-            <Card className="bg-white shadow-lg p-5 border-4 border-[#FFF6D2]">
-              <h3 className="text-2xl font-bold text-black">Development</h3>
-              <p className="text-[#757575] text-[13px] leading-[28px] mt-2">
+            <Card className="bg-white shadow-lg p-10 border-4 border-[#FFF6D2] border-b-0">
+              <h3 className="text-2xl font-bold text-black mb-3">Development</h3>
+              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium.
               </p>
               <img
                 src={hero3}
                 alt="Hero"
-                className="mt-3 w-full max-w-2xl h-[85%] object-cover"
+                className="mt-3 w-full max-w-4xl h-[88%] object-cover"
               />
             </Card>
 
             {/* Card 3 */}
-            <Card className="bg-white shadow-lg p-5 border-4 border-[#F5CDFF]">
-              <h3 className="text-2xl font-bold text-black">Development</h3>
-              <p className="text-[#757575] text-[13px] leading-[28px] mt-2">
+            <Card className="bg-white shadow-lg p-10 border-4 border-[#F5CDFF] border-b-0">
+              <h3 className="text-2xl font-bold text-black mb-3">Development</h3>
+              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium.
               </p>
               <img
                 src={hero4}
                 alt="Hero"
-                className="mt-3 w-full max-w-2xl  h-[85%] object-cover"
+                className="mt-3 w-full max-w-4xl h-[88%] object-cover"
               />
             </Card>
           </CardSwap>

@@ -114,6 +114,8 @@ const CardSwap = ({
 
       tl.to(elFront, {
         y: "+=500",
+        filter: "blur(2px)",        // <-- blur as it goes down
+        opacity: 0.9, 
         duration: config.durDrop,
         ease: config.ease,
       });
@@ -129,6 +131,8 @@ const CardSwap = ({
             x: slot.x,
             y: slot.y,
             z: slot.z,
+            filter: i === 0 ? "blur(0px)" : "blur(2px)",  // <-- top card sharp, others blurred
+            opacity: i === 0 ? 1 : 0.9,                   // <-- top card fully visible
             duration: config.durMove,
             ease: config.ease,
           },
@@ -157,6 +161,8 @@ const CardSwap = ({
           y: backSlot.y,
           duration: config.durReturn,
           ease: config.ease,
+          filter: "blur(2px)",      // <-- keep blurred when it goes to back
+          opacity: 0.9,             // <-- keep dimmed when it goes to back
         },
         "return"
       );
@@ -207,7 +213,7 @@ return (
   <div
     ref={container}
     className="relative flex justify-center items-center 
-               transform  translate-y-[8%] perspective-[900px] 
+               transform  lg:translate-y-[12%] md:translate-x-[45%] lg:translate-x-[40%]  perspective-[1000px] 
                overflow-visible 
                max-[768px]:scale-[0.75] 
                max-[480px]:scale-[0.55]
