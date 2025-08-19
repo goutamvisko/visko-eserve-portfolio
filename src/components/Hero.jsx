@@ -9,8 +9,7 @@ import hero4 from "../assets/img/hero4.jpg";
 
 export default function Hero() {
   return (
-    // <section className="bg-[#FFFFFF] w-full mt-25 mb-5 overflow-hidden">
-    <section className="bg-[#FFFFFF] w-full mt-25 mb-5 overflow-hidden">
+    <section className="bg-[#FFFFFF] w-full mt-25 mb-15 overflow-hidden">
       <div className="max-w-10xl pl-4 sm:pl-6 lg:pl-20 pr-5 py-12 flex flex-col lg:flex-row gap:10">
         {/* LEFT SIDE (Text + CardSwap + Hero Image) */}
         <div className="w-full lg:w-1/2 flex flex-col">
@@ -20,15 +19,14 @@ export default function Hero() {
               Best website development company in Indore
             </p>
 
-            <h1 className="font-bold text-[28px] leading-[36px] lg:text-[70px] lg:leading-[110px]">
-              We are Ready to
-            </h1>
+              <h1 className="m-0 font-bold text-[28px] leading-[36px] lg:text-[70px] lg:leading-[90px]">
+                We are Ready to
+              </h1>
+              <h1 className="m-0 font-bold text-[30px] leading-[40px] lg:text-[80px] lg:leading-[90px]">
+                Build Your <span className="text-[#478097]">Business</span>
+              </h1>
 
-            <h1 className="font-bold text-[30px] leading-[40px] lg:text-[80px] lg:leading-[110px]">
-              Build Your <span className="text-[#478097]">Business</span>
-            </h1>
-
-            <p className="text-[#757575] font-medium text-xs lg:text-base leading-[20px] lg:leading-[24px] mt-3">
+            <p className="text-[#757575] font-medium text-xs lg:text-base leading-[20px] lg:leading-[24px] mt-4">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -38,7 +36,7 @@ export default function Hero() {
 
             <Link
               to="/contact"
-              className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold bg-[#F26A33] hover:text-black transition"
+              className="mt-12 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold bg-[#F26A33] hover:text-black transition"
             >
               <Phone size={20} /> Request Call
             </Link>
@@ -109,7 +107,7 @@ export default function Hero() {
           </div>
 
           {/* HERO IMAGE */}
-          <div className="relative xm:mt-0 sm:mt-0 md:mt-0 lg:mt-15">
+          <div className="relative xm:mt-0 lg:mt-12">
             <img
               src={hero1}
               alt="Hero"
@@ -120,7 +118,7 @@ export default function Hero() {
                 h-auto 
                 sm:h-60   
                 md:h-60   
-                lg:h-78
+                lg:h-80
                 object-cover
               "
             />
@@ -153,7 +151,9 @@ export default function Hero() {
 
             {/* Card 2 */}
             <Card className="bg-white shadow-lg p-10 border-4 border-[#FFF6D2] border-b-0">
-              <h3 className="text-2xl font-bold text-black mb-3">Development</h3>
+              <h3 className="text-2xl font-bold text-black mb-3">
+                Development
+              </h3>
               <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium.
@@ -167,7 +167,9 @@ export default function Hero() {
 
             {/* Card 3 */}
             <Card className="bg-white shadow-lg p-10 border-4 border-[#F5CDFF] border-b-0">
-              <h3 className="text-2xl font-bold text-black mb-3">Development</h3>
+              <h3 className="text-2xl font-bold text-black mb-3">
+                Development
+              </h3>
               <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium.
