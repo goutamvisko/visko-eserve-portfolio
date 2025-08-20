@@ -26,6 +26,7 @@ export default function AboutUs() {
               <img
                 src={heroImg}
                 alt="Team working"
+                loading="lazy"
                 className="w-[85%] sm:w-[70%] lg:w-[90%] rounded-[10px] object-cover 
           h-[300px] sm:h-[380px] lg:h-[350px]"
               />

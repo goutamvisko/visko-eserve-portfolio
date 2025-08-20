@@ -148,6 +148,7 @@ export default function WhyUs() {
               <img
                 src={whyus}
                 alt="developer working"
+                lazy="loading"
                 className="w-full max-w-[420px] object-cover h-[260px] sm:h-[320px] md:h-[380px] lg:h-[500px] rounded-lg"
               />
             </div>

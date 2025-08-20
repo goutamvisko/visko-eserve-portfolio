@@ -39,6 +39,7 @@ export default function Projects() {
               <img
                 src={p4}
                 alt="Remark Job Portal"
+                lazy="loading"
                 className="w-full h-[220px] md:h-[240px] lg:h-[230px] object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute left-6 bottom-6 w-[200px] md:w-[220px]">
@@ -56,6 +57,7 @@ export default function Projects() {
               <img
                 src={p1}
                 alt="Visko Real Estate"
+                lazy="loading"
                 className="w-full h-[360px] md:h-[420px] lg:h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute left-6 bottom-6 w-[200px] md:w-[220px]">
@@ -76,6 +78,7 @@ export default function Projects() {
               <img
                 src={p2}
                 alt="Fraction Reality"
+                lazy="loading"
                 className="w-full h-[360px] md:h-[420px] lg:h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute left-6 bottom-6 w-[200px] md:w-[220px]">
@@ -93,6 +96,7 @@ export default function Projects() {
               <img
                 src={p3}
                 alt="Huming Bird"
+                lazy="loading"
                 className="w-full h-[220px] md:h-[240px] lg:h-[230px] object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute left-6 bottom-6 w-[200px] md:w-[220px]">

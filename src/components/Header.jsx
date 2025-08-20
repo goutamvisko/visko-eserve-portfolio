@@ -22,7 +22,7 @@ export default function Header() {
           {/* Left - Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
-              <img src={logo} alt="My Logo" className="h-22 w-auto" />
+              <img src={logo} alt="My Logo"  loading="lazy" className="h-22 w-auto" />
             </Link>
           </div>
 

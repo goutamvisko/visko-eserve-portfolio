@@ -19,12 +19,12 @@ export default function Hero() {
               Best website development company in Indore
             </p>
 
-              <h1 className="m-0 font-bold text-[28px] leading-[36px] lg:text-[70px] lg:leading-[90px]">
-                We are Ready to
-              </h1>
-              <h1 className="m-0 font-bold text-[30px] leading-[40px] lg:text-[80px] lg:leading-[90px]">
-                Build Your <span className="text-[#478097]">Business</span>
-              </h1>
+            <h1 className="m-0 font-bold text-[28px] leading-[36px] lg:text-[70px] lg:leading-[90px]">
+              We are Ready to
+            </h1>
+            <h1 className="m-0 font-bold text-[30px] leading-[40px] lg:text-[80px] lg:leading-[90px]">
+              Build Your <span className="text-[#478097]">Business</span>
+            </h1>
 
             <p className="text-[#757575] font-medium text-xs lg:text-base leading-[20px] lg:leading-[24px] mt-4">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -67,6 +67,7 @@ export default function Hero() {
                   <img
                     src={hero2}
                     alt="Hero"
+                    loading="lazy"
                     className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
                   />
                 </Card>
@@ -82,6 +83,7 @@ export default function Hero() {
                   </p>
                   <img
                     src={hero3}
+                    loading="lazy"
                     alt="Hero"
                     className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
                   />
@@ -98,6 +100,7 @@ export default function Hero() {
                   </p>
                   <img
                     src={hero4}
+                    loading="lazy"
                     alt="Hero"
                     className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
                   />
@@ -111,6 +114,7 @@ export default function Hero() {
             <img
               src={hero1}
               alt="Hero"
+              loading="lazy"
               className="
                 rounded-[10px] 
                 w-full 
@@ -145,6 +149,7 @@ export default function Hero() {
               <img
                 src={hero2}
                 alt="Hero"
+                loading="lazy"
                 className="mt-3 w-full max-w-4xl h-[87%] object-cover"
               />
             </Card>
@@ -161,6 +166,7 @@ export default function Hero() {
               <img
                 src={hero3}
                 alt="Hero"
+                loading="lazy"
                 className="mt-3 w-full max-w-4xl h-[88%] object-cover"
               />
             </Card>
@@ -177,6 +183,7 @@ export default function Hero() {
               <img
                 src={hero4}
                 alt="Hero"
+                loading="lazy"
                 className="mt-3 w-full max-w-4xl h-[88%] object-cover"
               />
             </Card>

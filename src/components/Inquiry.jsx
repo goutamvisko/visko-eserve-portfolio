@@ -58,6 +58,8 @@ export default function Inquiry({ isOpen, onClose }) {
             <img
               src={img}
               alt="img"
+              fetchpriority="high"
+              loading="lazy"
               className="rounded-2xl object-cover w-full h-[400px]"
             />
           </div>

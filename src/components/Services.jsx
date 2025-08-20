@@ -99,6 +99,7 @@ export default function Services() {
                 <img
                   src={s.img}
                   alt={s.title}
+                  loading="lazy"
                   className="w-full h-36 md:h-40 lg:h-44 object-cover rounded-md"
                 />
               </div>
