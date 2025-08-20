@@ -18,7 +18,7 @@ export const inquiryApi = createApi({
   endpoints: (builder) => ({
     createInquiry: builder.mutation({
       query: (formData) => ({
-        url: '/inquiry',
+        url: '/crm/leads/create-lead',
         method: 'POST',
         body: formData,
       }),
