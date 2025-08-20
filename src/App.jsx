@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PublicRoute from "./components/PublicRoute";
+import PublicRoute from "./layouts/PublicRoute";
 import LandingPage from "./pages/LandingPage";
 import { ToastContainer } from "react-toastify";
 function App() {

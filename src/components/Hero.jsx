@@ -83,8 +83,8 @@ export default function Hero() {
                   </p>
                   <img
                     src={hero3}
-                    loading="lazy"
                     alt="Hero"
+                    loading="lazy"
                     className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
                   />
                 </Card>
@@ -100,8 +100,8 @@ export default function Hero() {
                   </p>
                   <img
                     src={hero4}
-                    loading="lazy"
                     alt="Hero"
+                    loading="lazy"
                     className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
                   />
                 </Card>
