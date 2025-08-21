@@ -19,23 +19,21 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-50 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-15 lg:mt-70 relative z-10">
         {/* Grid container */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start justify-items-center mb-18">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start justify-items-center mb-10 lg:mb-18">
           {/* Left column */}
           <div>
-            {/* Heading */}
-            <p className="text-[#F26A33] text-sm font-semibold mb-2">
+            <p className="text-[#F26A33] text-sm font-semibold mb-2 text-center sm:text-left">
               Our Projects
             </p>
-            <h2 className="mb-6 text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] leading-tight font-semibold text-white">
+            <h2 className="mb-6 text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] leading-tight font-semibold text-white text-center sm:text-left">
               Web Development services
-              <br className="hidden sm:block" />
+              <br />
               aligned with your goals
             </h2>
-
             {/* Card 1 */}
-            <article className="group relative overflow-hidden rounded-md mb-10 mx-auto transition-transform duration-500 hover:scale-105">
+            <article className="group relative overflow-hidden rounded-md mb-6 lg:mb-10  mx-auto transition-transform duration-500 hover:scale-105">
               <img
                 src={p4}
                 alt="Remark Job Portal"
@@ -74,7 +72,7 @@ export default function Projects() {
           {/* Right column */}
           <div>
             {/* Card 2 */}
-            <article className="group relative overflow-hidden rounded-md mb-10 mx-auto transition-transform duration-500 hover:scale-105">
+            <article className="group relative overflow-hidden rounded-md mb-6 lg:mb-10 mx-auto transition-transform duration-500 hover:scale-105">
               <img
                 src={p2}
                 alt="Fraction Reality"
@@ -110,7 +108,7 @@ export default function Projects() {
             </article>
 
             {/* View all button */}
-            <div className="mt-20 flex justify-end">
+            <div className="mt-8 lg:mt-20 flex justify-center sm:justify-end">
               <button className="inline-flex items-center gap-2 text-[#F26A33] hover:underline font-semibold cursor-pointer transition-all duration-300 hover:scale-105">
                 View All Project
                 <ArrowRight size={16} />

@@ -6,10 +6,14 @@ import hero1 from "../assets/img/hero1.jpg";
 import hero2 from "../assets/img/hero2.jpg";
 import hero3 from "../assets/img/hero3.png";
 import hero4 from "../assets/img/hero4.jpg";
+import Inquiry from "./Inquiry";
+import { useState } from "react";
 
 export default function Hero() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <section className="bg-[#FFFFFF] w-full mt-25 mb-15 overflow-hidden">
+    <section className="bg-[#FFFFFF] w-full mt-25 mb-0 lg:mb-15 overflow-hidden">
       <div className="max-w-10xl pl-4 sm:pl-6 lg:pl-20 pr-5 py-12 flex flex-col lg:flex-row gap:10">
         {/* LEFT SIDE (Text + CardSwap + Hero Image) */}
         <div className="w-full lg:w-1/2 flex flex-col">
@@ -34,16 +38,18 @@ export default function Hero() {
               scrambled it to make a type specimen.
             </p>
 
-            <Link
-              to="/contact"
-              className="mt-12 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold bg-[#F26A33] hover:text-black transition"
+            <button
+              onClick={() => setOpen(true)}
+              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold bg-[#F26A33] hover:text-black transition"
             >
               <Phone size={20} /> Request Call
-            </Link>
+            </button>
+
+            <Inquiry isOpen={open} onClose={() => setOpen(false)} />
           </div>
 
           {/* CardSwap (MOBILE/TABLET ONLY) */}
-          <div className="lg:hidden relative z-20">
+          <div className="lg:hidden relative z-20 mt-3 ">
             <div className="flex justify-center">
               <CardSwap
                 // Responsive card dimensions

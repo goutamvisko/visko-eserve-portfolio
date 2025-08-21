@@ -37,7 +37,7 @@ export default function Footer() {
   };
   return (
     <footer className="bg-[#0f0f0f] text-white">
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20">
+      <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-10">
         {/* Contact circle (centered, overlapping top of footer) */}
         <div className="flex items-center gap-4 sm:gap-6 lg:gap-[50px]">
           {/* Heading */}

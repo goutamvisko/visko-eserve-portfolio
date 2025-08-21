@@ -33,7 +33,9 @@ export default function Inquiry({ isOpen, onClose }) {
   const onSubmit = async (data) => {
     try {
       let payload = { ...data };
-      (payload.source = "Website"), (payload.project_id = "");
+      payload.source = "Website",
+      payload.project_id = "";
+      payload.l_assigned_by = "Abhishek Sharma";
       const res = await createInquiry(payload).unwrap();
       console.log(res);
       toast.success(res?.message || "Inquiry submitted successfully");
@@ -42,7 +44,7 @@ export default function Inquiry({ isOpen, onClose }) {
     } catch (err) {
       const serverErrorMsg =
         err?.data?.errors?.[0]?.message ||
-        err?.data?.msg ||
+        err?.data?.message ||
         err?.message ||
         "Something went wrong";
       toast.error(serverErrorMsg);

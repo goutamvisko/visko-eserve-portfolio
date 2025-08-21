@@ -4,11 +4,11 @@ import heroImg from "../assets/img/about.jpg";
 
 export default function AboutUs() {
   return (
-    <section className="py-16 lg:py-24 bg-[#4780970D]">
+    <section className="py-12 lg:py-24 bg-[#4780970D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* LEFT column */}
-          <div className="space-y-4 text-center lg:text-left">
+          <div className="space-y-2 text-center lg:text-left">
             <p className="text-[#e55b1d] text-sm sm:text-base font-semibold">
               About Company
             </p>

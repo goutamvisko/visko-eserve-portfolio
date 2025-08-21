@@ -22,7 +22,7 @@ body {
 /* outlined slanted big repeated text used in the hero band */
 .projects-slab {
   position: absolute;
-  top: -3.2rem; /* tweak to taste */
+  top: -3.2rem; 
   left: -10%;
   right: -10%;
   pointer-events: none;
@@ -47,10 +47,12 @@ body {
   clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-/* responsive reduce of slab text size */
 @media (max-width: 1024px) {
   .projects-slab .stroke-text { font-size: 5rem; }
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .projects-slab .stroke-text { font-size: 3rem; left: -4%; }
+  .clip-slant-top {
+     clip-path: polygon(0 2%, 100% 0%, 100% 100%, 0% 100%);
+   }
 }
