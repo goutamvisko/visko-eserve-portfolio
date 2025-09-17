@@ -99,50 +99,45 @@ export default function Blogs() {
       </section>
 
       {/* Blog Grid */}
-      <section className="max-w-6xl mx-auto px-6 py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map((post, index) => (
-          <motion.div
-            key={post.id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group"
-          >
-            {/* Image */}
-            <div className="overflow-hidden">
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
+    {/* Blog Grid */}
+<section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  {blogPosts.map((post, index) => (
+    <motion.div
+      key={post.id}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      viewport={{ once: true }}
+      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group flex flex-col"
+    >
+      {/* Image */}
+      <div className="overflow-hidden">
+        <img
+          src={post.image}
+          alt={post.title}
+          className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
 
-            {/* Content */}
-            <div className="p-6 flex flex-col justify-between h-[250px]">
-              <div>
-                <p className="text-sm text-gray-500">
-                  {post.date} • {post.author}
-                </p>
-                <h3 className="text-xl font-bold mt-2 text-gray-800 group-hover:text-orange-500 transition">
-                  {post.title}
-                </h3>
-                <p className="mt-2 text-gray-600 text-sm line-clamp-3">
-                  {post.description}
-                </p>
-              </div>
-              <div className="mt-4">
-                <Link
-                  to={`/blog/${post.id}`}
-                  className="text-orange-500 font-medium hover:underline"
-                >
-                  Read More →
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </section>
+      {/* Content */}
+      <div className="p-6 flex flex-col flex-grow">
+        <p className="text-sm text-gray-500">
+          {post.date} • {post.author}
+        </p>
+        <h3 className="text-xl font-bold mt-2 text-gray-800 group-hover:text-orange-500 transition">
+          {post.title}
+        </h3>
+        <p className="mt-3 text-gray-600 text-sm leading-relaxed flex-grow">
+          {post.description}
+        </p>
+        {/* <button className="mt-4 text-orange-500 font-medium hover:text-orange-600 transition self-start">
+          Read More →
+        </button> */}
+      </div>
+    </motion.div>
+  ))}
+</section>
+
     </div>
   );
 }

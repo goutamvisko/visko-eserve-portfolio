@@ -155,7 +155,7 @@ export default function Services({ id }) {
                   <p className="mt-3 text-slate-600 font-medium leading-relaxed">
                     {service.desc}
                   </p>
-                  <div className="mt-6">
+                  {/* <div className="mt-6">
                     <span className="inline-flex items-center gap-2 font-semibold text-orange-500">
                       Learn More
                       <ArrowRight
@@ -163,7 +163,7 @@ export default function Services({ id }) {
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

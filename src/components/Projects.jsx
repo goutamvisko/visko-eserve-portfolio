@@ -148,7 +148,7 @@ export default function Projects({id}) {
                     ))}
                   </div>
                   
-                  <motion.div custom={5} variants={fadeInUp} className="pt-6">
+                  {/* <motion.div custom={5} variants={fadeInUp} className="pt-6">
                     <button className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500  shadow-pink-500/30 hover:shadow-xl transition-all transform hover:scale-105">
                       View Project
                       <ArrowRight
@@ -156,7 +156,7 @@ export default function Projects({id}) {
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </button>
-                  </motion.div>
+                  </motion.div> */}
                 </motion.div>
               </div>
             </SwiperSlide>
