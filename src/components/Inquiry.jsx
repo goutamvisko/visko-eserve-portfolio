@@ -99,6 +99,7 @@ export default function Inquiry({ isOpen, onClose }) {
                   {errors.name.message}
                 </p>
               )}
+
             </div>
 
             {/*  Mobile Number */}

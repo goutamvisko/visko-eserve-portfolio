@@ -1,201 +1,175 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import CardSwap, { Card } from "../animation/CardSwap";
-import { Phone } from "lucide-react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, ArrowRight } from "lucide-react";
+import Inquiry from "./Inquiry";
+
+// Import Swiper React components and modules
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards, Autoplay } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cards";
+
+// Import images
 import hero1 from "../assets/img/hero1.jpg";
 import hero2 from "../assets/img/hero2.jpg";
 import hero3 from "../assets/img/hero3.png";
 import hero4 from "../assets/img/hero4.jpg";
-import Inquiry from "./Inquiry";
-import { useState } from "react";
 
-export default function Hero() {
+// --- Card Data ---
+const cardData = [
+  {
+    id: 1,
+    img: hero2,
+    title: "Web Development",
+    desc: "Building responsive and high-performance websites tailored to your business needs.",
+  },
+  {
+    id: 2,
+    img: hero3,
+    title: "Custom Web Application",
+    desc: "Developing scalable and secure web applications to streamline your operations.",
+  },
+  {
+    id: 3,
+    img: hero4,
+    title: "E-Commerce Development",
+    desc: "Creating feature-rich online stores to help you sell products effectively.",
+  },
+];
+
+// --- Animation Variants for Text Content ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+export default function Hero({id}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="bg-[#FFFFFF] w-full mt-25 mb-0 lg:mb-15 overflow-hidden">
-      <div className="max-w-10xl pl-4 sm:pl-6 lg:pl-20 pr-5 py-12 flex flex-col lg:flex-row gap:10">
-        {/* LEFT SIDE (Text + CardSwap + Hero Image) */}
-        <div className="w-full lg:w-1/2 flex flex-col">
-          {/* TEXT */}
-          <div>
-            <p className="text-[#478097] text-sm lg:text-lg font-semibold">
-              Best website development company in Indore
-            </p>
-
-            <h1 className="m-0 font-bold text-[28px] leading-[36px] lg:text-[70px] lg:leading-[90px]">
-              We are Ready to
-            </h1>
-            <h1 className="m-0 font-bold text-[30px] leading-[40px] lg:text-[80px] lg:leading-[90px]">
-              Build Your <span className="text-[#478097]">Business</span>
-            </h1>
-
-            <p className="text-[#757575] font-medium text-xs lg:text-base leading-[20px] lg:leading-[24px] mt-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              Lorem Ipsum has been the industry's standard dummy type and
-              scrambled it to make a type specimen.
-            </p>
-
-            <button
-              onClick={() => setOpen(true)}
-              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold bg-[#F26A33] hover:text-black transition"
+    <section className="w-full bg-slate-50 pt-35 lg:pt-35 overflow-hidden" id={id}>
+      {/* Main container with responsive padding and max-width */}
+      <div className="max-w-10xl flex flex-col lg:flex-row items-center gap-12 lg:gap-16 px-4 sm:px-6 lg:px-20">
+        {/* === LEFT & TOP CONTAINER (Text and Hero Image) === */}
+        <div className="w-full lg:w-1/2 flex flex-col order-1">
+          <motion.div
+            className="order-1"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Text Content */}
+            <motion.p
+              variants={itemVariants}
+              className="text-[#478097] text-base lg:text-lg font-bold tracking-wide"
             >
-              <Phone size={20} /> Request Call
-            </button>
-
+              BEST WEBSITE DEVELOPMENT COMPANY
+            </motion.p>
+            <motion.h1
+              variants={itemVariants}
+              className=" font-black text-slate-900 text-4xl sm:text-5xl lg:text-7xl tracking-tighter mt-2"
+            >
+              We Are Ready to <br />
+              <span> Build Your </span>
+              <span className="text-[#478097]">Business</span>
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="text-slate-600 font-medium text-base lg:text-lg leading-relaxed mt-5 max-w-xl"
+            >
+              We craft exceptional digital experiences that are not only
+              visually stunning but also highly functional and user-friendly.
+            </motion.p>
+           
+            <motion.div custom={5} variants={itemVariants} className="pt-6">
+              <button onClick={() => setOpen(true)} className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:shadow-lg shadow-pink-500/30  transition-all transform hover:scale-105">
+                Request a Call
+                <ArrowRight
+                  size={20}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </button>
+            </motion.div>
             <Inquiry isOpen={open} onClose={() => setOpen(false)} />
-          </div>
+          </motion.div>
 
-          {/* CardSwap (MOBILE/TABLET ONLY) */}
-          <div className="lg:hidden relative z-20 mt-3 ">
-            <div className="flex justify-center">
-              <CardSwap
-                // Responsive card dimensions
-                width={360}
-                height={320}
-                cardDistance={25}
-                verticalDistance={30}
-                delay={5000}
-                pauseOnHover={false}
-                className="mx-auto sm:w-[200px] sm:h-[170px] md:w-[240px] md:h-[190px]"
-              >
-                {/* Card 1 */}
-                <Card className="bg-white shadow-md p-3 border-2 border-[#CFFFF5]">
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-black">
-                    Design
-                  </h3>
-                  <p className="text-[13px]  leading-[14px] text-mutedText mt-1">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem.
-                  </p>
-                  <img
-                    src={hero2}
-                    alt="Hero"
-                    loading="lazy"
-                    className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
-                  />
-                </Card>
-
-                {/* Card 2 */}
-                <Card className="bg-white shadow-md p-3 border-2 border-[#FFF6D2]">
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-black">
-                    Development
-                  </h3>
-                  <p className="text-[13px] leading-[14px] text-mutedText mt-1">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem.
-                  </p>
-                  <img
-                    src={hero3}
-                    alt="Hero"
-                    loading="lazy"
-                    className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
-                  />
-                </Card>
-
-                {/* Card 3 */}
-                <Card className="bg-white shadow-md p-3 border-2 border-[#F5CDFF]">
-                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-black">
-                    Development
-                  </h3>
-                  <p className="text-[13px] leading-[14px] text-mutedText mt-1">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem.
-                  </p>
-                  <img
-                    src={hero4}
-                    alt="Hero"
-                    loading="lazy"
-                    className="mt-2 w-full h-58 sm:h-53  md:h-50 object-cover rounded"
-                  />
-                </Card>
-              </CardSwap>
-            </div>
-          </div>
-
-          {/* HERO IMAGE */}
-          <div className="relative xm:mt-0 lg:mt-12">
+          {/* Hero Image */}
+          <motion.div
+            className="order-3 lg:order-2 mt-12 w-full hidden lg:block"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
+          >
             <img
               src={hero1}
-              alt="Hero"
+              alt="Main project"
               loading="lazy"
-              className="
-                rounded-[10px] 
-                w-full 
-                max-w-7xl 
-                h-auto 
-                sm:h-60   
-                md:h-60   
-                lg:h-80
-                object-cover
-              "
+              className="rounded-2xl w-full h-auto max-h-[400px] object-cover shadow-2xl shadow-slate-900/10"
             />
-          </div>
+          </motion.div>
         </div>
 
-        {/* RIGHT SIDE (CardSwap for desktop only) */}
-        <div className="w-full lg:w-1/3 hidden lg:flex  items-end justify-end ">
-          <CardSwap
-            width={950}
-            height={650}
-            cardDistance={40}
-            verticalDistance={89}
-            delay={3000}
-            pauseOnHover={false}
+        {/* === RIGHT & MIDDLE CONTAINER (Swiper Cards) === */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center order-2 lg:order-3 min-h-[400px] sm:min-h-[240px]">
+          <motion.div
+            className="w-full flex justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
           >
-            {/* Card 1 */}
-            <Card className="bg-white shadow-lg p-10 border-4 border-[#CFFFF5] border-b-0">
-              <h3 className="text-2xl font-bold text-black mb-3">Design</h3>
-              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium.
-              </p>
-              <img
-                src={hero2}
-                alt="Hero"
-                loading="lazy"
-                className="mt-3 w-full max-w-4xl h-[87%] object-cover"
-              />
-            </Card>
-
-            {/* Card 2 */}
-            <Card className="bg-white shadow-lg p-10 border-4 border-[#FFF6D2] border-b-0">
-              <h3 className="text-2xl font-bold text-black mb-3">
-                Development
-              </h3>
-              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium.
-              </p>
-              <img
-                src={hero3}
-                alt="Hero"
-                loading="lazy"
-                className="mt-3 w-full max-w-4xl h-[88%] object-cover"
-              />
-            </Card>
-
-            {/* Card 3 */}
-            <Card className="bg-white shadow-lg p-10 border-4 border-[#F5CDFF] border-b-0">
-              <h3 className="text-2xl font-bold text-black mb-3">
-                Development
-              </h3>
-              <p className="text-[#757575] text-[20px] leading-[28px] mb-3">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium.
-              </p>
-              <img
-                src={hero4}
-                alt="Hero"
-                loading="lazy"
-                className="mt-3 w-full max-w-4xl h-[88%] object-cover"
-              />
-            </Card>
-          </CardSwap>
+            <Swiper
+              effect={"cards"}
+              grabCursor={true}
+              modules={[EffectCards, Autoplay]}
+              className="w-[250px] h-[360px] md:w-[420px] md:h-[560px] lg:w-[560px] lg:h-[600px]"
+              loop={true}
+              autoplay={{
+                delay: 2500, // ⏱ speed of change
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+              }}
+              cardsEffect={{
+                perSlideOffset: 12,
+                perSlideRotate: 5,
+                slideShadows: false,
+              }}
+            >
+              {cardData.map((card) => (
+                <SwiperSlide
+                  key={card.id}
+                  className="rounded-2xl overflow-hidden shadow-xl"
+                >
+                  <div className="relative w-full h-full">
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-2xl font-bold">{card.title}</h3>
+                      <p className="text-base text-gray-200 mt-2 leading-relaxed">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </motion.div>
         </div>
       </div>
+      <Inquiry isOpen={open} onClose={() => setOpen(false)} />
     </section>
   );
 }

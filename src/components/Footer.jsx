@@ -1,188 +1,186 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Facebook,
-  Youtube,
   Instagram,
   Linkedin,
   ArrowRight,
   ChevronUp,
+  Twitter 
 } from "lucide-react";
+import { motion } from "framer-motion";
 import logo from "../assets/img/logo.png";
-import { useEffect, useState } from "react";
+import Inquiry from "./Inquiry";
 
 export default function Footer() {
   const [showButton, setShowButton] = useState(false);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
+    const handleScroll = () => setShowButton(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
-    return () => window.addEventListener("scroll", handleScroll);
-  });
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-  const scrollToBottom = () => {
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToBottom = () =>
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
     });
+
+  // Animation Variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" },
+    }),
   };
+
   return (
-    <footer className="bg-[#0f0f0f] text-white">
-      <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-10">
-        {/* Contact circle (centered, overlapping top of footer) */}
-        <div className="flex items-center gap-4 sm:gap-6 lg:gap-[50px]">
-          {/* Heading */}
-          <h2 className="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[64px] leading-none font-extrabold tracking-tight">
+    <footer className="relative bg-slate-950 text-gray-300 overflow-hidden">
+      {/* Subtle Animated Gradient Layer */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent)] animate-pulse"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        {/* Call to Action */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">
             Let’s Talk
           </h2>
 
-          {/* Circle button */}
-          <div
-            className="flex-shrink-0 w-20 h-20 sm:w-[90px] sm:h-[90px] md:w-32 md:h-32 
-       rounded-full border-2 border-[#F26A33] flex items-center justify-center"
+          <motion.button
+            onClick={() => setOpen(true)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="group w-24 h-24 flex items-center justify-center rounded-full 
+                   bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 
+                   shadow-lg hover:shadow-2xl text-white text-lg font-semibold 
+                   transition-all"
           >
-            <span className="text-[#F26A33] font-semibold text-xs sm:text-sm md:text-lg text-center">
-              Contact us
-            </span>
-          </div>
-        </div>
+            <ArrowRight
+              size={28}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </motion.button>
+        </motion.div>
+        <Inquiry isOpen={open} onClose={() => setOpen(false)} />
 
-        {/* Main row */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mt-8">
-          {/* Left side: Logo + Search */}
-          <div className="flex items-center gap-6 w-full lg:w-auto">
-            {/* Logo */}
-            <img src={logo} alt="logo" className="w-10 h-15 object-contain" />
-
-            {/* Search box */}
-            <div className="flex-1 min-w-[210px] max-w-md">
-              <div className="flex items-center gap-4 border-b border-gray-700 pb-2">
+        {/* Row with Logo, Input, Socials */}
+        <div className="mt-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          {/* Logo + Email */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            className="flex items-center gap-6 w-full lg:w-auto"
+          >
+            <img src={logo} alt="logo" className="w-14 h-auto object-contain" />
+            <div className="flex-1 min-w-[220px] max-w-md">
+              <div className="flex items-center gap-3 border-b border-gray-600 pb-2">
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="Enter your email"
                   className="bg-transparent w-full focus:outline-none placeholder:text-gray-400 text-gray-200"
-                  aria-label="Your email"
                 />
-                <button className="flex items-center gap-2 text-[#F26A33] font-medium">
+                <button className="flex items-center gap-2 text-orange-500 font-medium hover:text-white transition">
                   <span>Send</span>
-                  <ArrowRight size={16} strokeWidth={2} />
+                  <ArrowRight size={16} />
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* For mobile: Nav first, Social icons second */}
-          <div className="flex flex-col items-center gap-4 w-full lg:hidden">
-            {/* Nav */}
-            <div className="border border-gray-800 py-4 w-full">
-              <nav className="flex justify-center gap-2 sm:gap-4 md:gap-6 text-sm sm:text-base md:text-lg">
-                <a href="#" className="text-gray-300 hover:text-white">
-                  Home
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  About
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  Services
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  Portfolio
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  Blog
-                </a>
-              </nav>
-            </div>
-
-            {/* Social icons */}
-            <div className="flex items-center gap-4">
-              <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-                <Facebook size={14} />
-              </button>
-              <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-                <Youtube size={14} />
-              </button>
-              <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-                <Instagram size={14} />
-              </button>
-              <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-                <Linkedin size={14} />
-              </button>
-            </div>
-          </div>
-
-          {/* For desktop: Social icons on the right */}
-          <div className="hidden lg:flex items-center gap-4">
-            <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-              <Facebook size={14} />
-            </button>
-            <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-              <Youtube size={14} />
-            </button>
-            <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-              <Instagram size={14} />
-            </button>
-            <button className="w-9 h-9 rounded-full bg-[#101010] border border-gray-700 flex items-center justify-center">
-              <Linkedin size={14} />
-            </button>
-          </div>
+          {/* Social Icons */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            className="flex gap-4"
+          >
+            {[
+              {
+                Icon: Facebook,
+                color: "hover:text-blue-500",
+                link: "https://www.facebook.com/profile.php?id=61578248735784",
+              },
+              {
+                Icon: Instagram,
+                color: "hover:text-pink-400",
+                link: "https://www.instagram.com/visko_e_serve/",
+              },
+              {
+                Icon: Linkedin,
+                color: "hover:text-blue-400",
+                link: "https://www.linkedin.com/company/visko-eserve-private-limited",
+              },
+              {
+                Icon: Twitter,
+                color: "hover:text-blue-400",
+                link: "https://x.com/visko_e_serve",
+              },
+            ].map(({ Icon, color, link }, i) => (
+              <motion.a
+                key={i}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15 }}
+                className={`w-10 h-10 rounded-full bg-[#1e293b] border border-gray-600 flex items-center justify-center transition ${color}`}
+              >
+                <Icon size={18} />
+              </motion.a>
+            ))}
+          </motion.div>
         </div>
 
-        {/* For desktop: Nav below everything */}
-        <div className="hidden lg:block mt-8">
-          <div className="border border-gray-800 py-4 w-full">
-            <nav className="flex justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 text-sm sm:text-base md:text-lg">
-              <a href="#" className="text-gray-300 hover:text-white">
-                Home
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                About
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                Services
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                Portfolio
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                Blog
-              </a>
-            </nav>
-          </div>
+        {/* Navigation */}
+        <motion.nav
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          className="mt-10 border-t border-gray-700 pt-6 flex justify-center gap-6 text-sm sm:text-base"
+        >
+          {["Home", "About", "Services", "Portfolio", "Blog"].map((item, i) => (
+            <a
+              key={i}
+              href="#"
+              className="text-gray-400 hover:text-white transition"
+            >
+              {item}
+            </a>
+          ))}
+        </motion.nav>
+
+        {/* Footer bottom */}
+        <div className="mt-8 text-center text-xs text-gray-500">
+          © 2025 Visko E-Serve Pvt. Ltd. All rights reserved.
         </div>
 
-        {/* divider */}
-        <div className="mt-5 border-t border-gray-800 pt-6">
-          <p className="text-center text-xs text-gray-400">
-            © 2025 Visko E-Serve Pvt. Ltd. All rights reserved. Crafted with
-            care and commitment to digital excellence.
-          </p>
-        </div>
-
-        {/* Floating Icon */}
+        {/* Floating Buttons */}
         {showButton && (
           <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-50">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.15 }}
               onClick={scrollToTop}
-              className="bg-[#F26A33] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full shadow-lg text-white"
             >
-              <ChevronUp className="text-white w-6 h-5.3" />
-            </button>
-            <button
+              <ChevronUp className="w-5 h-5" />
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.15 }}
               onClick={scrollToBottom}
-              className="bg-[#F26A33] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+              className="bg-gradient-to-r from-pink-500 to-orange-500 p-3 rounded-full shadow-lg text-white"
             >
               ↓
-            </button>
+            </motion.button>
           </div>
         )}
       </div>

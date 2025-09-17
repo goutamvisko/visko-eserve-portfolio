@@ -1,158 +1,93 @@
 import React from "react";
-import whyus from "../assets/img/whyus.jpg";
+import { motion } from "framer-motion";
+import { Shield, Zap, Users, Award, HeadphonesIcon,Globe } from "lucide-react";
 
-/* inline icons (same as you had) */
-const IconIdea = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path
-      d="M9 18h6"
-      stroke="#F26A33"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M12 2a6 6 0 0 0-3 11.1V15a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1.9A6 6 0 0 0 12 2z"
-      stroke="#111827"
-      strokeWidth="1.2"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-const IconQuality = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path
-      d="M12 2l3 2 3 1v5a7 7 0 0 1-3 5l-3 2-3-2A7 7 0 0 1 6 10V5l3-1 3-2z"
-      stroke="#111827"
-      strokeWidth="1.2"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M9.5 12.5l1.8 1.8L14.5 11"
-      stroke="#F26A33"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-const IconValue = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <circle
-      cx="12"
-      cy="12"
-      r="8"
-      stroke="#111827"
-      strokeWidth="1.2"
-      fill="none"
-    />
-    <path
-      d="M10.5 9.5c.5-.5 1.5-.5 2 0 .5.6 0 1.5-1 1.8-1 .3-1.2 1.7.2 2"
-      stroke="#F26A33"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M12 7v1.5M12 15v1.5"
-      stroke="#F26A33"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-export default function WhyUs() {
+const features = [
+  {
+    id: 1,
+    icon: <Shield className="w-10 h-10 text-indigo-600" />,
+    title: "Trusted & Secure",
+    description:
+      "We follow industry best practices to deliver highly secure and reliable solutions.",
+  },
+  {
+    id: 2,
+    icon: <Zap className="w-10 h-10 text-indigo-600" />,
+    title: "Fast Delivery",
+    description:
+      "Our agile approach ensures we deliver quality projects on time, every time.",
+  },
+  {
+    id: 3,
+    icon: <Users className="w-10 h-10 text-indigo-600" />,
+    title: "Expert Team",
+    description:
+      "A dedicated team of professionals with deep expertise across multiple domains.",
+  },
+  {
+    id: 4,
+    icon: <Award className="w-10 h-10 text-indigo-600" />,
+    title: "Proven Excellence",
+    description:
+      "Award-winning services with a track record of successful client partnerships.",
+  },
+  {
+    id: 5,
+    icon: <HeadphonesIcon className="w-10 h-10 text-indigo-600" />,
+    title: "24/7 Support",
+    description:
+      "We’re always available to assist our clients and ensure smooth operations.",
+  },
+  {
+    id: 6,
+    title: "Global Reach",
+    icon: <Globe size={28} className="text-indigo-500" />,
+    description: "Serving clients worldwide with scalable solutions.",
+  },
+];
+
+export default function WhyChooseUs() {
   return (
-    <section className="py-12 md:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative">
-          {/* Two-column layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 items-start text-center lg:text-left">
-            {/* LEFT: label + heading + overlay card */}
-            <div className="order-1 flex flex-col items-center lg:items-start">
-              <p className="text-[#F26A33] text-sm font-semibold mb-2">
-                Why us for you
-              </p>
-              <h2 className="text-2xl sm:text-3xl md:text-[40px] lg:text-[44px] font-semibold leading-tight text-black tracking-tight text-center lg:text-left">
-                Design agency working with
-                <br />
-                brands building insightful
-                <br />
-                strategy
-              </h2>
+    <section className="relative bg-gradient-to-b from-gray-50 to-indigo-50 py-20" id="why-us">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+            Why Choose <span className="text-orange-500">Us</span>?
+          </h2>
+          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            We combine creativity, expertise, and dedication to bring your ideas to life with unmatched quality.
+          </p>
+        </motion.div>
 
-              {/* Overlay card under text */}
-              <div
-                className="
-            mt-8
-            w-full
-            lg:w-[100%] xl:w-[1000px]
-            bg-white rounded-lg shadow-2xl
-            p-6 sm:p-8
-            z-20
-          "
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                  {/* Feature 1 */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full ring-1 ring-gray-100 flex items-center justify-center bg-white">
-                      <IconIdea />
-                    </div>
-                    <h4 className="mt-4 text-base font-semibold text-black">
-                      Innovation
-                    </h4>
-                    <p className="mt-1 text-sm text-gray-500 leading-6 max-w-[250px]">
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium.
-                    </p>
-                  </div>
-
-                  {/* Feature 2 */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full ring-1 ring-gray-100 flex items-center justify-center bg-white">
-                      <IconQuality />
-                    </div>
-                    <h4 className="mt-4 text-base font-semibold text-black">
-                      Quality-Focused
-                    </h4>
-                    <p className="mt-1 text-sm text-gray-500 leading-6 max-w-[250px]">
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium.
-                    </p>
-                  </div>
-
-                  {/* Feature 3 */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full ring-1 ring-gray-100 flex items-center justify-center bg-white">
-                      <IconValue />
-                    </div>
-                    <h4 className="mt-4 text-base font-semibold text-black">
-                      Value For Money
-                    </h4>
-                    <p className="mt-1 text-sm text-gray-500 leading-6 max-w-[250px]">
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium.
-                    </p>
-                  </div>
-                </div>
+        {/* Features Grid */}
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition flex flex-col items-center text-center"
+            >
+              <div className="bg-indigo-100 p-4 rounded-full mb-4">
+                {feature.icon}
               </div>
-            </div>
-
-            {/* RIGHT: image */}
-            <div className="order-2 flex justify-center lg:justify-end">
-              <img
-                src={whyus}
-                alt="developer working"
-                lazy="loading"
-                className="w-full max-w-[420px] object-cover h-[260px] sm:h-[320px] md:h-[380px] lg:h-[500px] rounded-lg"
-              />
-            </div>
-          </div>
+              <h3 className="text-xl font-semibold text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

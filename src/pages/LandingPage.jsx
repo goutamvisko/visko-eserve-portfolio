@@ -5,6 +5,8 @@ import Services from "../components/Services";
 import Projects from "../components/Projects";
 import WhyUs from "../components/WhyUs";
 import Inquiry from "../components/Inquiry"
+import Testimonials from "../components/Testimonials";
+import Technologies from "../components/Technologies";
 
 export default function LandingPage() {
     const [showInquiry, setShowInquiry] = useState(false);
@@ -20,11 +22,13 @@ export default function LandingPage() {
   
   return (
     <>
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Projects />
-      <WhyUs />
+      <Hero  id="hero"/>
+      <AboutUs id="about"/>
+      <Services id="services" />
+      <Projects id="portfolio" />
+      <WhyUs  />
+      <Technologies />
+      <Testimonials/>
       {/*Inquiry Modal Popup */}
       {showInquiry && (
         <Inquiry
