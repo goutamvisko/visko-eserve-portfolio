@@ -1,67 +1,64 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { scroller } from "react-scroll";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "../assets/img/logo.png";
-import Inquiry from "../components/Inquiry"; // ✅ Import once
+import Inquiry from "../components/Inquiry";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const navLinks = [
-    { name: "Home", path: "#hero" },
-    { name: "About", path: "#about" },
-    { name: "Services", path: "#services" },
-    { name: "Portfolio", path: "#portfolio" },
-    // { name: "Blog", path: "/blogs" },
+    { name: "Home", path: "hero", route: "/" },
+    { name: "About", path: "about", route: "/" },
+    { name: "Services", path: "services", route: "/" },
+    { name: "Portfolio", path: "portfolio", route: "/" },
+    { name: "Blogs", path: "blogs", route: "/blogs" },
   ];
 
-  const handleScroll = (e, path) => {
-    if (path.startsWith("#")) {
-      e.preventDefault();
-      const id = path.replace("#", "");
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-        setIsOpen(false);
-      }
-    } else {
-      navigate(path);
-      setIsOpen(false);
-    }
-  };
+ 
+const handleNavClick = (link) => {
+  if (link.route === "/blogs") {
+    navigate(link.route);
+  } else if (location.pathname === "/") {
+    scroller.scrollTo(link.path, { smooth: true, duration: 500, offset: -80 });
+  } else {
+    navigate("/", { state: { scrollTo: link.path } });
+  }
+  setIsOpen(false);
+};
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-      <div className="max-w-8xl mx-auto px-6 lg:px-20">
-        <div className="flex justify-between items-center h-20">
+    <nav className="fixed top-0 left-0 right-0 bg-white w-full z-50 shadow-md mb-20">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-18">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Logo" className="h-16 w-auto" /> {/* ✅ fixed */}
-          </Link>
+          <div className="flex-shrink-0 cursor-pointer" onClick={() => handleNavClick(navLinks[0])}>
+            <img src={logo} alt="Logo" className="h-22 w-auto" />
+          </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Links */}
+          <div className="hidden md:flex space-x-8 font-bold">
             {navLinks.map((link) => (
-              <a
+              <span
                 key={link.name}
-                href={link.path}
-                onClick={(e) => handleScroll(e, link.path)}
-                className="relative text-gray-700 font-semibold hover:text-black transition group cursor-pointer"
+                className="text-gray-700 hover:text-gray-900 transition cursor-pointer"
+                onClick={() => handleNavClick(link)}
               >
                 {link.name}
-                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
-              </a>
+              </span>
             ))}
           </div>
 
-          {/* Contact Button */}
-          <div className="hidden md:flex">
+          {/* Desktop Buttons */}
+          <div className="hidden md:flex gap-3">
             <button
               onClick={() => setIsInquiryOpen(true)}
-              type="button"
-              className="flex items-center gap-2 px-5 py-2 rounded-full bg-black text-white font-medium shadow-md hover:bg-gray-900 transition"
+              className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition cursor-pointer"
             >
               <Phone size={18} /> Contact
             </button>
@@ -69,34 +66,32 @@ export default function Header() {
 
           {/* Mobile Toggle */}
           <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 focus:outline-none"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-800 focus:outline-none">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg">
-          <div className="px-6 pt-4 pb-6 space-y-4">
+        <div className="md:hidden bg-white shadow-lg absolute w-full z-40">
+          <div className="px-4 pt-4 pb-6 space-y-2">
             {navLinks.map((link) => (
-              <a
+              <span
                 key={link.name}
-                href={link.path}
-                onClick={(e) => handleScroll(e, link.path)}
-                className="block text-gray-700 font-medium hover:text-black transition cursor-pointer"
+                className="block text-gray-700 hover:text-gray-900 transition cursor-pointer font-medium"
+                onClick={() => handleNavClick(link)}
               >
                 {link.name}
-              </a>
+              </span>
             ))}
             <button
-              onClick={() => setIsInquiryOpen(true)}
-              type="button"
-              className="flex items-center gap-2 px-5 py-2 w-max rounded-full bg-black text-white font-medium shadow-md hover:bg-gray-900 transition"
+              onClick={() => {
+                setIsInquiryOpen(true);
+                setIsOpen(false);
+              }}
+              className="flex items-center gap-2 w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer"
             >
               <Phone size={18} /> Contact
             </button>
@@ -104,8 +99,10 @@ export default function Header() {
         </div>
       )}
 
-      {/* Inquiry Modal (✅ keep only once) */}
+      {/* Modals */}
       <Inquiry isOpen={isInquiryOpen} onClose={() => setIsInquiryOpen(false)} />
+     
     </nav>
   );
 }
+

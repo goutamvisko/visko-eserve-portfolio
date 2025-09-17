@@ -16,7 +16,11 @@ function App() {
         <Routes>
           <Route path="/" element={<PublicRoute />}>
             <Route index element={<LandingPage />} />
-            <Route path="/blogs" element={<Blogs />} />
+            <Route path="about" element={<LandingPage scrollTo="about" />} />
+            <Route path="hero" element={<LandingPage scrollTo="hero" />} />
+            <Route path="services" element={<LandingPage scrollTo="services" />} />
+            <Route path="portfolio" element={<LandingPage scrollTo="portfolio" />} />
+            <Route path="blogs" element={<Blogs />} />
           </Route>
         </Routes>
       </BrowserRouter>

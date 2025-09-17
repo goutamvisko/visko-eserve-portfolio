@@ -5,13 +5,18 @@ import {
   Linkedin,
   ArrowRight,
   ChevronUp,
-  Twitter 
+  Twitter,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "../assets/img/logo.png";
 import Inquiry from "./Inquiry";
+import { useNavigate, useLocation } from "react-router-dom";
+import { scroller } from "react-scroll";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -27,6 +32,27 @@ export default function Footer() {
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
     });
+  // Footer navigation handler
+  const handleNavClick = (id) => {
+    const sectionMap = {
+      home: "hero",
+      about: "about",
+      services: "services",
+      portfolio: "portfolio",
+    };
+
+    if (location.pathname === "/") {
+      scroller.scrollTo(sectionMap[id.toLowerCase()] || id, {
+        smooth: true,
+        duration: 500,
+        offset: -80,
+      });
+    } else {
+      navigate("/", {
+        state: { scrollTo: sectionMap[id.toLowerCase()] || id },
+      });
+    }
+  };
 
   // Animation Variants
   const fadeInUp = {
@@ -153,6 +179,7 @@ export default function Footer() {
               key={i}
               href="#"
               className="text-gray-400 hover:text-white transition"
+              onClick={() => handleNavClick(item.toLowerCase())}
             >
               {item}
             </a>

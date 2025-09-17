@@ -5,19 +5,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import Modal from "../commonFile/Modal";
-import img from "../assets/img/1.webp";
+import img from "../assets/img/inquiry.png";
+import { X, PhoneCall, Gift, Lightbulb } from "lucide-react";
 
 const schema = yup.object().shape({
-  name: yup
+  full_name: yup 
     .string()
-    .required("Name is required")
+    .required("Full Name is required")
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be less than 50 characters"),
-  email: yup.string().email("Invalid email address").optional(),
-  number: yup
+  email_id: yup.string().email("Invalid email address").optional(), 
+  contact_number: yup 
     .string()
-    .required("Phone number is required")
-    .matches(/^\d{10}$/, "Phone number must be 10 digits"),
+    .required("Contact Number is required")
+    .matches(/^\d{10}$/, "Contact number must be 10 digits"),
+  description: yup
+    .string()
+    .max(500, "Description must be less than 500 characters")
+    .optional(), 
 });
 
 export default function Inquiry({ isOpen, onClose }) {
@@ -32,16 +37,22 @@ export default function Inquiry({ isOpen, onClose }) {
 
   const onSubmit = async (data) => {
     try {
-      let payload = { ...data };
-      payload.source = "Website",
-      payload.project_id = "";
-      payload.l_assigned_by = "Abhishek Sharma";
+      let payload = {
+        l_name: data.full_name,
+        l_email: data.email_id,
+        l_contact: data.contact_number,
+        l_description: data.description,
+        l_source: "web",
+        l_project_id: "7",
+        l_assigned_by: "Abhishek Sharma",
+      };
       const res = await createInquiry(payload).unwrap();
       console.log(res);
       toast.success(res?.message || "Inquiry submitted successfully");
       reset();
       onClose();
     } catch (err) {
+      console.log(err);
       const serverErrorMsg =
         err?.data?.errors?.[0]?.message ||
         err?.data?.message ||
@@ -53,117 +64,158 @@ export default function Inquiry({ isOpen, onClose }) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="bg-white rounded-xl shadow-lg max-w-3xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden">
-        {/* Left Image with Gradient Shape */}
-        <div className="flex items-center justify-center p-4 bg-blue-50">
-          <div className="p-[4px] rounded-2xl bg-gradient-to-r from-blue-500 to-green-400 shadow-lg">
-            <img
-              src={img}
-              alt="img"
-              fetchpriority="high"
-              loading="lazy"
-              className="rounded-2xl object-cover w-full h-[400px]"
-            />
-          </div>
-        </div>
+      <div className="bg-white rounded-xl shadow-2xl  w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
+        {/* Close button for the modal */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-black lg:text-white  transition-colors z-20 cursor-pointer"
+          aria-label="Close"
+        >
+          <X size={24} />
+        </button>
 
-        {/* Right Form */}
-        <div className="p-6 md:p-8 overflow-y-auto max-h-[80vh]">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Get Instant Enquiry!
+        {/* Left Form Section */}
+        <div className="p-7 md:p-8 flex flex-col justify-center">
+          <h2 className="text-[20px] sm:text-3xl font-bold text-gray-900 mb-6">
+            Get instant enquiry
           </h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Get your project started instantly from{" "}
-            <span className="text-blue-500 font-semibold">E-Serve</span> Support
-            Team
-          </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
-            {/* Name */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-15">
+            {/* Full Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
               <input
                 type="text"
-                placeholder="Your Name"
-                {...register("name")}
-                className={`mt-1 block w-full rounded-lg border p-2 focus:outline-none focus:ring-2 ${
-                  errors.name
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:ring-blue-500"
+                placeholder="Full Name"
+                {...register("full_name")}
+                className={`w-full border-b pb-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors ${
+                  errors.full_name ? "border-red-500" : "border-gray-300"
                 }`}
               />
-              {errors.name && (
+              {errors.full_name && (
                 <p className="text-red-500 text-xs mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-
-            </div>
-
-            {/*  Mobile Number */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Mobile Number
-              </label>
-              <div className="flex">
-                <span className="flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg text-gray-500">
-                  +91
-                </span>
-                <input
-                  type="tel"
-                  placeholder="Mobile Number"
-                  maxLength={10}
-                  {...register("number")}
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
-                  }}
-                  className={`mt-0 block w-full rounded-r-lg border p-2 focus:outline-none focus:ring-2 ${
-                    errors.number
-                      ? "border-red-500 focus:ring-red-500"
-                      : "border-gray-300 focus:ring-blue-500"
-                  }`}
-                />
-              </div>
-              {errors.number && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.number.message}
+                  {errors.full_name.message}
                 </p>
               )}
             </div>
 
-            {/* Email */}
+            {/* Email Id */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
               <input
                 type="email"
-                placeholder="Your Email"
-                {...register("email")}
-                className={`mt-1 block w-full rounded-lg border p-2 focus:outline-none focus:ring-2 ${
-                  errors.email
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-300 focus:ring-blue-500"
+                placeholder="Email Id"
+                {...register("email_id")}
+                className={`w-full border-b pb-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors ${
+                  errors.email_id ? "border-red-500" : "border-gray-300"
                 }`}
               />
-              {errors.email && (
+              {errors.email_id && (
                 <p className="text-red-500 text-xs mt-1">
-                  {errors.email.message}
+                  {errors.email_id.message}
                 </p>
               )}
             </div>
 
-            {/* Submit */}
+            {/* Contact Number */}
+            <div>
+              <input
+                type="tel"
+                placeholder="Contact Number"
+                maxLength={10}
+                {...register("contact_number")}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                }}
+                className={`w-full border-b pb-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors ${
+                  errors.contact_number ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.contact_number && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.contact_number.message}
+                </p>
+              )}
+            </div>
+
+            {/* Describe your requirement */}
+            <div>
+              <input
+                type="text"
+                placeholder="Describe your requirement"
+                {...register("description")}
+                className={`w-full border-b pb-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors ${
+                  errors.description ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.description && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.description.message}
+                </p>
+              )}
+            </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg disabled:opacity-50"
+              className="w-full bg-[#FC6C31] hover:bg-[#E05B26] text-white font-semibold py-3 rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
             >
-              {isSubmitting ? "Submitting..." : "Get a call"}
+              {isSubmitting ? "Submitting..." : "Get Free Consultation"}
             </button>
           </form>
+        </div>
+
+        {/* Right Info Section */}
+        <div className="relative bg-[#407E96] p-3 md:p-3 text-white flex flex-col justify-between items-center text-center hidden md:flex">
+          {/* Image */}
+          <div className="relative w-60 h-60 flex items-center justify-center mb-6 mt-4">
+            <div className="relative w-60 h-60 flex items-center justify-center mb-6 mt-4">
+              {/* ==== Bottom Left Arcs ==== */}
+              {/* Inner Arc */}
+              <div className="absolute w-56 h-56 rounded-full border-[3px] border-transparent border-l-white bottom-2 left-2 -rotate-45"></div>
+
+              {/* Outer Arc */}
+              <div className="absolute w-56 h-56 rounded-full border-[3px] border-transparent border-l-white bottom-1 left-1 -rotate-45"></div>
+
+              {/* ==== Top Right Arcs ==== */}
+              {/* Inner Arc */}
+              <div className="absolute w-56 h-56 rounded-full border-[3px] border-transparent border-r-white top-2 right-2 -rotate-46"></div>
+
+              {/* Outer Arc */}
+              <div className="absolute w-56 h-56 rounded-full border-[3px] border-transparent border-r-white top-1 right-1 -rotate-47"></div>
+
+              {/* Inner Circle with Image */}
+              <div className="w-50 h-50 rounded-full overflow-hidden flex items-center justify-center bg-[#2b5e72ff]">
+                <img
+                  src={img}
+                  alt="Man with laptop"
+                  className="w-[100%] h-[90%]  object-cover object-[75%_75%] hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+            </div>
+          </div>
+
+          <h3 className="text-2xl font-bold mb-4">
+            Do You have any Idea on your mind?
+          </h3>
+          <p className="text-sm text-white/90 mb-8 max-w-xs">
+            Your ideas matter for us, Let's turn them into reality, with{" "}
+            <span className="font-bold text-[18px]">Visko E-serve.</span>
+          </p>
+
+          <ul className="space-y-3 text-left w-full max-w-[250px] mx-auto mb-6">
+            <li className="flex items-center gap-3">
+              <PhoneCall size={18} className="text-white/80" />
+              <span className="text-white/90">Get an instant call</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Gift size={18} className="text-white/80" />
+              <span className="text-white/90">Free consultation</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Lightbulb size={18} className="text-white/80" />
+              <span className="text-white/90">Experts guidance</span>
+            </li>
+          </ul>
         </div>
       </div>
     </Modal>
