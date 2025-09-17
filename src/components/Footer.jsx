@@ -148,7 +148,7 @@ export default function Footer() {
           whileInView="visible"
           className="mt-10 border-t border-gray-700 pt-6 flex justify-center gap-6 text-sm sm:text-base"
         >
-          {["Home", "About", "Services", "Portfolio", "Blog"].map((item, i) => (
+          {["Home", "About", "Services", "Portfolio"].map((item, i) => (
             <a
               key={i}
               href="#"
